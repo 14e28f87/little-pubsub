@@ -17,7 +17,7 @@ export default class LittlePubSub {
     return this.subscribers[event] ? true : false
   }
 
-  subscribe(event: string, handler: Function, context?: Function): void {
+  subscribe<T = any>(event: string, handler: (T)=>any, context?: Function): void {
     if (!this.hasSubscribers(event))
       this.subscribers[event] = { handlers: [], value: undefined }
 
@@ -25,7 +25,7 @@ export default class LittlePubSub {
     this.subscribers[event].handlers.push(handler.bind(context))
   }
 
-  unsubscribe(event: string, handler: Function, context?: Function): void {
+  unsubscribe<T = any>(event: string, handler: (T)=>any, context?: Function): void {
     if (!this.hasSubscribers(event)) return
 
     context = this._handleContext(handler, context)
@@ -37,9 +37,9 @@ export default class LittlePubSub {
       delete this.subscribers[event]
   }
 
-  publish(
+  publish<T = string | number | boolean | object | Array<any>>(
     event: string,
-    value: string | number | boolean | object | Array<any>,
+    value: T,
     verbose?: boolean
   ): void {
     // always set value even when having no subscribers

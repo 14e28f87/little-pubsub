@@ -10,7 +10,7 @@
       "types": "./index.d.ts"
     }
   },
-  "repository": "https://github.com/vandeurenglenn/little-pubsub",
+  "repository": "https://github.com/14e28f87/little-pubsub",
   "author": "vandeurenglenn <vandeurenglenn@gmail.com>",
   "license": "MIT",
   "type": "module",

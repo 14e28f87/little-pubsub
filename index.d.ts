@@ -9,9 +9,9 @@ export default class LittlePubSub {
     constructor(verbose?: boolean);
     _handleContext(handler: Function, context?: Function): Function;
     hasSubscribers(event: string): boolean;
-    subscribe(event: string, handler: Function, context?: Function): void;
-    unsubscribe(event: string, handler: Function, context?: Function): void;
-    publish(event: string, value: string | number | boolean | object | Array<any>, verbose?: boolean): void;
+    subscribe<T = any>(event: string, handler: (T: any) => any, context?: Function): void;
+    unsubscribe<T = any>(event: string, handler: (T: any) => any, context?: Function): void;
+    publish<T = string | number | boolean | object | Array<any>>(event: string, value: T, verbose?: boolean): void;
     publishVerbose(event: string, value: string | number | boolean | object | Array<any>): void;
     once(event: string): Promise<string | number | boolean | object | Array<any>>;
 }
